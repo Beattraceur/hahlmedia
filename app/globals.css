@@ -1,0 +1,5 @@
+/* Tailwind basic setup for usage in payload  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
