@@ -5,9 +5,13 @@ import * as THREE from 'three';
 
 interface RainEffectProps {
   windRPM?: number;
+  rainColor?: number;
 }
 
-const RainEffect: React.FC<RainEffectProps> = ({ windRPM = 0 }) => {
+const RainEffect: React.FC<RainEffectProps> = ({
+  windRPM = 0,
+  rainColor = 0x212e34,
+}) => {
   const rainRef = useRef<THREE.Points>(null);
   const boxSize = 10; // Size of the box
   const windSpeed = (windRPM / 100) * 0.2; // Convert windRPM to wind speed between 0 and 0.2
@@ -15,7 +19,7 @@ const RainEffect: React.FC<RainEffectProps> = ({ windRPM = 0 }) => {
 
   useEffect(() => {
     const rainGeo = new THREE.BufferGeometry();
-    const rainCount = 15000;
+    const rainCount = 30000;
     const positions = [];
 
     // Generate rain particles within an extended plane to cover the entire cube
@@ -36,7 +40,7 @@ const RainEffect: React.FC<RainEffectProps> = ({ windRPM = 0 }) => {
     );
 
     const rainMaterial = new THREE.PointsMaterial({
-      color: 0xaaaaaa,
+      color: rainColor,
       size: 0.03,
       transparent: true,
     });
@@ -45,7 +49,7 @@ const RainEffect: React.FC<RainEffectProps> = ({ windRPM = 0 }) => {
       rainRef.current.geometry = rainGeo;
       rainRef.current.material = rainMaterial;
     }
-  }, []);
+  }, [rainColor]);
 
   useFrame(() => {
     if (rainRef.current) {
@@ -53,7 +57,7 @@ const RainEffect: React.FC<RainEffectProps> = ({ windRPM = 0 }) => {
       if (positionAttribute) {
         const positions = positionAttribute.array as Float32Array;
         for (let i = 0; i < positions.length; i += 3) {
-          positions[i + 1] -= 0.15; // Move rain downwards
+          positions[i + 1] -= 0.17; // Move rain downwards
           // Calculate the horizontal wind effect
           const windFactor = new THREE.Vector2(
             windDirection.x * windSpeed,

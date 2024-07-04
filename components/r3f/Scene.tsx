@@ -15,17 +15,21 @@ export default function Scene({ trigger, lastHourRainAmount }) {
   const soilMoisture = espData.at(-1)?.percentageHumidity;
 
   const { resolvedTheme } = useTheme();
-  const ambientLightIntnsity = resolvedTheme === 'dark' ? 0 : 1.5;
-  const directLightIntnsity = resolvedTheme === 'dark' ? 1 : 0.8;
-
+  const ambientLightIntnsity = resolvedTheme === 'dark' ? 0 : 0.8;
+  const directLightIntnsity = resolvedTheme === 'dark' ? 1 : 1.2;
+  const rainColor = resolvedTheme === 'dark' ? 0x4a6876 : 0x212e34;
+  const sunMoonColor = resolvedTheme === 'dark' ? 0xcef4ff : 0xfff2ce;
   return (
     <group>
       <ambientLight intensity={ambientLightIntnsity} />
       <directionalLight
         intensity={directLightIntnsity}
         position={(20, 40, 40)}
+        color={sunMoonColor}
       />
-      <RainEffect windRPM={windRPM} />
+      {lastHourRainAmount > 0 && (
+        <RainEffect windRPM={windRPM} rainColor={rainColor} />
+      )}
       <Rotator position={[0, 1, 0]} windRPM={windRPM} />
 
       <WaterLevel soilMoisture={soilMoisture} />
