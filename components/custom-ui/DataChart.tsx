@@ -7,6 +7,7 @@ import {
   BarChart,
   ResponsiveContainer,
   Tooltip,
+  YAxis,
 } from 'recharts';
 import {
   Drawer,
@@ -125,6 +126,9 @@ export default function DataChart({ lang, sensor }: ChartType) {
                       <stop offset='95%' stopColor='hsl(var(--primary))' />
                     </linearGradient>
                   </defs>
+                  {sensor === 'pressure' && (
+                    <YAxis domain={['auto', 'auto']} hide={true} />
+                  )}
                   <Tooltip
                     contentStyle={{
                       backgroundColor: 'hsl(var(--background))',
