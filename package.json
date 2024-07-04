@@ -25,6 +25,7 @@
     "@radix-ui/react-toast": "^1.1.5",
     "@react-three/drei": "^9.106.0",
     "@react-three/fiber": "^8.16.8",
+    "@react-three/postprocessing": "^2.16.2",
     "@types/mongodb": "^4.0.7",
     "@types/three": "^0.165.0",
     "@upstash/redis": "^1.30.1",

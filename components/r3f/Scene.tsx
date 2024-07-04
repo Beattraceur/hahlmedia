@@ -6,7 +6,9 @@ import { useEspData } from '@/lib/espDataFetcher';
 import RainEffect from './RainEffect';
 import Base from './Base';
 import Lighthouse from './Lighthouse';
+import Lightbox from './Lightbox';
 import Barrels from './Barrels';
+
 export default function Scene({ trigger, lastHourRainAmount }) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
@@ -32,6 +34,7 @@ export default function Scene({ trigger, lastHourRainAmount }) {
         trigger={trigger}
         lastHourRainAmount={lastHourRainAmount}
       /> */}
+      <Lightbox />
       <Lighthouse windRPM={windRPM} trigger={trigger} />
       <Barrels lastHourRainAmount={lastHourRainAmount} trigger={trigger} />
       <Base />

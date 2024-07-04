@@ -1,12 +1,13 @@
 import { MeshTransmissionMaterial, RoundedBox } from '@react-three/drei';
 
 export default function WaterLevel({ soilMoisture = 50 }) {
+  const scaleFaktor = 16.35;
   return (
     <RoundedBox
-      args={[19.99, soilMoisture / 20, 19.99]}
+      args={[19.99, soilMoisture / scaleFaktor, 19.99]}
       smoothness={4}
       radius={0.32}
-      position={[0, -9 + soilMoisture / 40, 0]}
+      position={[0, -10.15 + soilMoisture / (2 * scaleFaktor), 0]}
     >
       <MeshTransmissionMaterial
         transmission={0.8}
