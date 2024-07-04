@@ -61,7 +61,7 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
         onPointerOut={(event) => trigger('')}
         geometry={nodes.WaterLevel.geometry}
         material={materials.LevelIndicator}
-        position={[2, 4, 3]}
+        position={[2, 5, 3]}
         rotation={[0, 0.641, 0]}
         scale={[0.024, 0.236, 0.006]}
       />
