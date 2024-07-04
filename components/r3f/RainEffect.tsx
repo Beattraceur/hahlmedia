@@ -14,7 +14,7 @@ const RainEffect: React.FC<RainEffectProps> = ({
 }) => {
   const rainRef = useRef<THREE.Points>(null);
   const boxSize = 10; // Size of the box
-  const windSpeed = (windRPM / 100) * 0.2; // Convert windRPM to wind speed between 0 and 0.2
+  const windSpeed = (windRPM / 40) * 0.2; // Convert windRPM to wind speed between 0 and 0.2
   const windDirection = new THREE.Vector2(1, 0); // Wind direction vector
 
   useEffect(() => {
