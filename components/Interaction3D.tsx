@@ -11,6 +11,7 @@ import {
 import DioramaInfo from './custom-ui/DioramaInfo';
 import { PageText } from '@/lib/types';
 import { useEspData } from '@/lib/espDataFetcher';
+import MainStage from './r3f/MainStage';
 export default function Interaction3D({
   lang,
   text,
@@ -27,7 +28,7 @@ export default function Interaction3D({
   );
   return (
     <>
-      <Stage
+      <MainStage
         trigger={setTriggeredTopic}
         lastHourRainAmount={lastHourRainAmount}
       />

@@ -1,4 +1,4 @@
-import { RoundedBox } from '@react-three/drei'; // Assuming you're not using Tetrahedron
+import { Backdrop, RoundedBox } from '@react-three/drei'; // Assuming you're not using Tetrahedron
 import Rotator from './Rotator';
 import WaterLevel from './WaterLevel';
 import { useTheme } from 'next-themes';

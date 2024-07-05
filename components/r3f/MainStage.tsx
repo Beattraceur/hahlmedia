@@ -1,10 +1,10 @@
 'use client';
 import { Canvas, useFrame } from '@react-three/fiber';
 import Scene from './Scene';
-import { OrbitControls } from '@react-three/drei';
+import { Backdrop, OrbitControls, Stage } from '@react-three/drei';
 import { DirectionalLight } from 'three';
 
-export default function Stage({ trigger, lastHourRainAmount }) {
+export default function MainStage({ trigger, lastHourRainAmount }) {
   const light = new DirectionalLight();
   light.position.set(2, 10, 6); // This position is relative to the camera's position
   return (
