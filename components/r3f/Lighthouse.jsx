@@ -51,8 +51,9 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
       <mesh
         geometry={nodes.Cylinder.geometry}
         material={materials.BrickWall}
-        position={[0, 3.127, 0]}
-        scale={[3.567, 2.488, 3.567]}
+        position={[2.322, 2.921, -0.999]}
+        rotation={[0, 0.47, 0]}
+        scale={[6.488, 2.488, 3.567]}
       />
       <mesh
         onPointerOver={(event) => (
@@ -62,7 +63,7 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
         geometry={nodes.WaterLevel.geometry}
         material={materials.LevelIndicator}
         position={[2, 5, 3]}
-        rotation={[0, 0.641, 0]}
+        rotation={[0, 0.269, 0]}
         scale={[0.024, 0.236, 0.006]}
       />
       <group

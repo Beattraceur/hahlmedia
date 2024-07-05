@@ -16,13 +16,16 @@ export default function Model({ trigger, lastHourRainAmount = 0, ...props }) {
   }, [lastHourRainAmount]);
 
   return (
-    <group {...props} dispose={null} position={[0, -10.1, 0]}>
-      <group
-        onPointerOver={(event) => (
-          event.stopPropagation(), trigger('lastHourRainAmount')
-        )}
-        onPointerOut={(event) => trigger('')}
-      >
+    <group
+      {...props}
+      dispose={null}
+      position={[0, -10.1, 0]}
+      onPointerOver={(event) => (
+        event.stopPropagation(), trigger('lastHourRainAmount')
+      )}
+      onPointerOut={(event) => trigger('')}
+    >
+      <group>
         <group position={[-6.776, 6.572, -3.909]} scale={0.275}>
           <mesh
             geometry={nodes.Cylinder002.geometry}
@@ -133,6 +136,14 @@ export default function Model({ trigger, lastHourRainAmount = 0, ...props }) {
             />
           </group>
         )}
+      </group>
+      <group
+        position={[-6.776, 7.135, -3.905]}
+        rotation={[-Math.PI, 0, 0]}
+        scale={0.158}
+      >
+        <mesh geometry={nodes.Cone.geometry} material={materials.Brass} />
+        <mesh geometry={nodes.Cone_1.geometry} material={materials.Wood} />
       </group>
     </group>
   );

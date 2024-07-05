@@ -8,12 +8,13 @@ import Base from './Base';
 import Lighthouse from './Lighthouse';
 import Lightbox from './Lightbox';
 import Barrels from './Barrels';
+import Barometer from './Barometer';
 
 export default function Scene({ trigger, lastHourRainAmount }) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
   const soilMoisture = espData.at(-1)?.percentageHumidity;
-
+  const pressure = espData.at(-1)?.pressure;
   const { resolvedTheme } = useTheme();
   const ambientLightIntnsity = resolvedTheme === 'dark' ? 0 : 0.8;
   const directLightIntnsity = resolvedTheme === 'dark' ? 1 : 1.2;
@@ -41,6 +42,7 @@ export default function Scene({ trigger, lastHourRainAmount }) {
       <Lightbox />
       <Lighthouse windRPM={windRPM} trigger={trigger} />
       <Barrels lastHourRainAmount={lastHourRainAmount} trigger={trigger} />
+      <Barometer pressure={pressure} trigger={trigger} />
       <Base />
     </group>
   );
