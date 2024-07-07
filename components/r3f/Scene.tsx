@@ -9,7 +9,7 @@ import Lighthouse from './Lighthouse';
 import Lightbox from './Lightbox';
 import Barrels from './Barrels';
 import Barometer from './Barometer';
-
+import Balloon from './Balloon';
 export default function Scene({ trigger, lastHourRainAmount }) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
@@ -42,7 +42,8 @@ export default function Scene({ trigger, lastHourRainAmount }) {
       <Lightbox />
       <Lighthouse windRPM={windRPM} trigger={trigger} />
       <Barrels lastHourRainAmount={lastHourRainAmount} trigger={trigger} />
-      <Barometer pressure={pressure} trigger={trigger} />
+      {/* <Barometer pressure={pressure} trigger={trigger} /> */}
+      <Balloon pressure={pressure} trigger={trigger} />
       <Base />
     </group>
   );

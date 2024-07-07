@@ -41,7 +41,7 @@ const RainEffect: React.FC<RainEffectProps> = ({
 
     const rainMaterial = new THREE.PointsMaterial({
       color: rainColor,
-      size: 0.03,
+      size: 0.02,
       transparent: true,
     });
 
