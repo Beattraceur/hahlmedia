@@ -134,12 +134,14 @@ export default function DioramaInfo({
         </DialogContent>
       </Dialog>
       {triggeredTopic && (
-        <div className='fixed top-0 right-0 w-40 h-32 mt-6'>
+        <div className='fixed top-0 right-0 w-40 h-32 mt-6 select-none'>
           <h1>
             {triggeredTopic === 'lastHourRainAmount'
               ? lang === 'de'
                 ? 'Stündliche'
                 : 'Last hour'
+              : triggeredTopic === 'pressure' && lang === 'de'
+              ? 'Aktueller'
               : lang === 'de'
               ? 'Aktuelle'
               : 'Current'}

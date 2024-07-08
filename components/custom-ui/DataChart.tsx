@@ -95,7 +95,9 @@ export default function DataChart({ lang, sensor }: ChartType) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant='outline'>{buttonLabel}</Button>
+        <Button variant='outline' className='select-none'>
+          {buttonLabel}
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className='mx-auto w-full max-w-sm'>

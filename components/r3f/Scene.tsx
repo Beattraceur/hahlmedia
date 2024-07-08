@@ -44,7 +44,7 @@ export default function Scene({ trigger, lastHourRainAmount }) {
       <Lighthouse windRPM={windRPM} trigger={trigger} />
       <ThermoHouse temperature={temperature} trigger={trigger} />
       <Barrels lastHourRainAmount={lastHourRainAmount} trigger={trigger} />
-      {/* <Barometer pressure={pressure} trigger={trigger} /> */}
+
       <Balloon pressure={pressure} trigger={trigger} />
       <Base />
       {/* <Stats /> */}

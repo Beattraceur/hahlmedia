@@ -14,8 +14,8 @@ export default function WaterLevel({ soilMoisture = 50 }) {
         distortion={0.5}
         thickness={1}
         color={'#3D97A0'}
-        temporalDistortion={0.5}
-        resolution={1080}
+        temporalDistortion={0.3}
+        resolution={720}
       />
     </RoundedBox>
   );
