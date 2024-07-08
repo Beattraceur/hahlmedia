@@ -59,16 +59,16 @@ export default function Interaction3D({
           />
         )}
       </div>
-      <div className='fixed bottom-0 left-auto'>
+      <div className='flex flex-col fixed bottom-0  '>
+        <DataChart lang={lang} sensor='windRPM' ref={windRPMRef} />
+        <DataChart lang={lang} sensor='pressure' ref={pressureRef} />
+        <DataChart lang={lang} sensor='rainAmount' ref={rainAmountRef} />
+        <DataChart lang={lang} sensor='temperature' ref={temperatureRef} />
         <DataChart
           lang={lang}
           sensor='percentageHumidity'
           ref={percentageHumidityRef}
         />
-        <DataChart lang={lang} sensor='rainAmount' ref={rainAmountRef} />
-        <DataChart lang={lang} sensor='temperature' ref={temperatureRef} />
-        <DataChart lang={lang} sensor='pressure' ref={pressureRef} />
-        <DataChart lang={lang} sensor='windRPM' ref={windRPMRef} />
       </div>
     </>
   );

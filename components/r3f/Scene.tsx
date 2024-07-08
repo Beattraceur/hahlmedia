@@ -45,7 +45,9 @@ export default function Scene({
       {lastHourRainAmount > 0 && (
         <RainEffect windRPM={windRPM} rainColor={rainColor} />
       )}
-      <Rotator position={[0, 1, 0]} windRPM={windRPM} />
+      {resolvedTheme === 'dark' && (
+        <Rotator position={[0, 1, 0]} windRPM={windRPM} />
+      )}
 
       <WaterLevel soilMoisture={soilMoisture} />
       {/* <Base
@@ -53,7 +55,7 @@ export default function Scene({
         trigger={trigger}
         lastHourRainAmount={lastHourRainAmount}
       /> */}
-      <Lightbox />
+      {/* <Lightbox /> */}
       <Lighthouse
         windRPM={windRPM}
         trigger={trigger}
