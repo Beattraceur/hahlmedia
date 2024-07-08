@@ -10,7 +10,14 @@ import Lightbox from './Lightbox';
 import Barrels from './Barrels';
 import ThermoHouse from './ThermoHouse';
 import Balloon from './Balloon';
-export default function Scene({ trigger, lastHourRainAmount }) {
+import { TriggerType } from '@/lib/types';
+export default function Scene({
+  trigger,
+  lastHourRainAmount,
+}: {
+  trigger: TriggerType;
+  lastHourRainAmount: number;
+}) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
   const soilMoisture = espData.at(-1)?.percentageHumidity;
@@ -26,7 +33,7 @@ export default function Scene({ trigger, lastHourRainAmount }) {
       <ambientLight intensity={ambientLightIntnsity} />
       <directionalLight
         intensity={directLightIntnsity}
-        position={(20, 40, 40)}
+        position={[20, 40, 40]}
         color={sunMoonColor}
       />
       {lastHourRainAmount > 0 && (

@@ -1,13 +1,9 @@
 'use client';
 import { Locale } from '@/i18n.config';
 import DataChart from '@/components/custom-ui/DataChart';
-import Stage from '@/components/r3f/Stage';
-import { use, useRef, useState } from 'react';
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from '@/components/ui/hover-card';
+
+import { useState } from 'react';
+
 import DioramaInfo from './custom-ui/DioramaInfo';
 import { PageText } from '@/lib/types';
 import { useEspData } from '@/lib/espDataFetcher';

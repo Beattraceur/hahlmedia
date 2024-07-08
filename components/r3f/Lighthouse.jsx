@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.2.18 public/models/BaseWWindLighthouse.glb
 */
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Text, useGLTF } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useTheme } from 'next-themes';
 export default function Model({ windRPM = 0, trigger, ...props }) {

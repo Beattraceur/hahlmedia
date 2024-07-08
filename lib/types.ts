@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 //types to make TypeScript happy
 export type PageText = {
   id: number;
@@ -63,6 +65,10 @@ export type PictureTopic = {
 };
 
 export type ChartType = {
-  lang: "en" | "de";
+  lang: 'en' | 'de';
   sensor: string;
+};
+
+export type TriggerType = {
+  trigger: Dispatch<SetStateAction<string>>;
 };

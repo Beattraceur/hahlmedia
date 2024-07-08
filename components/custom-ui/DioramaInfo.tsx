@@ -31,6 +31,7 @@ export default function DioramaInfo({
   lang: Locale;
   text: PageText;
   triggeredTopic: string;
+  lastHourRainAmount: number;
 }) {
   const [topicLabel, setTopicLabel] = useState<string>('');
   const [valueLabel, setValueLabel] = useState<string>('');
