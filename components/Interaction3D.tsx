@@ -1,13 +1,13 @@
 'use client';
+
 import { Locale } from '@/i18n.config';
 import DataChart from '@/components/custom-ui/DataChart';
-
-import { useState } from 'react';
-
+import { useRef, useState } from 'react';
 import DioramaInfo from './custom-ui/DioramaInfo';
 import { PageText } from '@/lib/types';
 import { useEspData } from '@/lib/espDataFetcher';
 import MainStage from './r3f/MainStage';
+
 export default function Interaction3D({
   lang,
   text,
@@ -22,11 +22,32 @@ export default function Interaction3D({
     (sum, entry) => sum + (entry.rainAmount || 0),
     0
   );
+
+  // Create refs for each DataChart
+  const percentageHumidityRef = useRef(null);
+  const rainAmountRef = useRef(null);
+  const temperatureRef = useRef(null);
+  const pressureRef = useRef(null);
+  const windRPMRef = useRef(null);
+
+  // Function to open the specific drawer
+  const openDrawer = (chartRef) => {
+    if (chartRef.current) {
+      chartRef.current.openDrawer();
+    }
+  };
+
   return (
     <>
       <MainStage
         trigger={setTriggeredTopic}
+        openDrawer={openDrawer}
+        percentageHumidityRef={percentageHumidityRef}
+        windRPMRef={windRPMRef}
         lastHourRainAmount={lastHourRainAmount}
+        rainAmountRef={rainAmountRef}
+        temperatureRef={temperatureRef}
+        pressureRef={pressureRef}
       />
       <div className='fixed top-3 right-3'>
         {text && (
@@ -39,11 +60,15 @@ export default function Interaction3D({
         )}
       </div>
       <div className='fixed bottom-0 left-auto'>
-        <DataChart lang={lang} sensor={'percentageHumidity'} />
-        <DataChart lang={lang} sensor={'rainAmount'} />
-        <DataChart lang={lang} sensor={'temperature'} />
-        <DataChart lang={lang} sensor={'pressure'} />
-        <DataChart lang={lang} sensor={'windRPM'} />
+        <DataChart
+          lang={lang}
+          sensor='percentageHumidity'
+          ref={percentageHumidityRef}
+        />
+        <DataChart lang={lang} sensor='rainAmount' ref={rainAmountRef} />
+        <DataChart lang={lang} sensor='temperature' ref={temperatureRef} />
+        <DataChart lang={lang} sensor='pressure' ref={pressureRef} />
+        <DataChart lang={lang} sensor='windRPM' ref={windRPMRef} />
       </div>
     </>
   );

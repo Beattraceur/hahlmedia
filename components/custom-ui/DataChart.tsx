@@ -1,14 +1,5 @@
-'use client';
-import * as React from 'react';
-import {
-  Area,
-  AreaChart,
-  Bar,
-  BarChart,
-  ResponsiveContainer,
-  Tooltip,
-  YAxis,
-} from 'recharts';
+import React, { useRef, useImperativeHandle, forwardRef } from 'react';
+import { Area, AreaChart, ResponsiveContainer, Tooltip, YAxis } from 'recharts';
 import {
   Drawer,
   DrawerClose,
@@ -21,9 +12,9 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { ChartType } from '@/lib/types';
-import { Separator } from '@radix-ui/react-select';
 import { convertDate } from '@/lib/getDate';
 import { useEspData } from '@/lib/espDataFetcher';
+
 type EspData = {
   _id: string;
   rainAmount: number;
@@ -31,12 +22,22 @@ type EspData = {
   [key: string]: any;
 };
 
-export default function DataChart({ lang, sensor }: ChartType) {
+const DataChart = forwardRef(({ lang, sensor }: ChartType, ref) => {
   const [buttonLabel, setButtonLabel] = React.useState<string>('');
   const [valueLabel, setValueLabel] = React.useState<string>('');
   const [suffix, setSuffix] = React.useState<string>('');
 
   const espData = useEspData();
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    openDrawer: () => {
+      if (triggerRef.current) {
+        triggerRef.current.click();
+      }
+    },
+  }));
+
   React.useEffect(() => {
     switch (sensor) {
       case 'percentageHumidity':
@@ -90,12 +91,12 @@ export default function DataChart({ lang, sensor }: ChartType) {
         setSuffix('rpm');
         break;
     }
-  }, []);
+  }, [sensor, lang]);
 
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant='outline' className='select-none'>
+        <Button variant='outline' className='select-none' ref={triggerRef}>
           {buttonLabel}
         </Button>
       </DrawerTrigger>
@@ -152,22 +153,10 @@ export default function DataChart({ lang, sensor }: ChartType) {
                     fill='url(#colorUv)'
                   />
                 </AreaChart>
-                {/* <BarChart data={espData}>
-                  <Bar
-                    dataKey={sensor}
-                    style={
-                      {
-                        fill: "hsl(var(--foreground))",
-                        opacity: 0.9,
-                      } as React.CSSProperties
-                    }
-                  />
-                </BarChart> */}
               </ResponsiveContainer>
             </div>
           </div>
           <DrawerFooter>
-            {/* <Button>Submit</Button> */}
             <DrawerClose asChild>
               <Button variant='outline'>Cancel</Button>
             </DrawerClose>
@@ -176,4 +165,8 @@ export default function DataChart({ lang, sensor }: ChartType) {
       </DrawerContent>
     </Drawer>
   );
-}
+});
+
+DataChart.displayName = 'DataChart';
+
+export default DataChart;

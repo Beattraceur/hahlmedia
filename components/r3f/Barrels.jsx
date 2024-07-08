@@ -6,7 +6,13 @@ Command: npx gltfjsx@6.2.18 public/models/BaseWWindLighthouse.glb
 import React, { useEffect, useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 
-export default function Model({ trigger, lastHourRainAmount = 0, ...props }) {
+export default function Model({
+  trigger,
+  lastHourRainAmount = 0,
+  openDrawer,
+  rainAmountRef,
+  ...props
+}) {
   const { nodes, materials } = useGLTF('./models/Barrels.glb');
 
   const [barrelCount, setBarrelCount] = useState(0);
@@ -24,6 +30,7 @@ export default function Model({ trigger, lastHourRainAmount = 0, ...props }) {
         event.stopPropagation(), trigger('lastHourRainAmount')
       )}
       onPointerOut={(event) => trigger('')}
+      onClick={(event) => openDrawer(rainAmountRef)}
     >
       <group>
         <group position={[-6.776, 6.572, -3.909]} scale={0.275}>

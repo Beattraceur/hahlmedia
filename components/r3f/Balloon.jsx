@@ -2,7 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
-export default function Model({ pressure = 965, trigger }, props) {
+export default function Model(
+  { pressure = 965, openDrawer, pressureRef, trigger },
+  props
+) {
   const { nodes, materials } = useGLTF('./models/Balloon.glb');
 
   const pressureLevel = pressure - 961;
@@ -32,6 +35,7 @@ export default function Model({ pressure = 965, trigger }, props) {
           event.stopPropagation(), trigger('pressure')
         )}
         onPointerOut={(event) => trigger('')}
+        onClick={(event) => openDrawer(pressureRef)}
       >
         <mesh
           geometry={nodes.Sphere_Sphere002.geometry}

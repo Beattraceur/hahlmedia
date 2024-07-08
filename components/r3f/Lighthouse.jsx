@@ -7,7 +7,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useTheme } from 'next-themes';
-export default function Model({ windRPM = 0, trigger, ...props }) {
+export default function Model({
+  windRPM = 0,
+  trigger,
+  openDrawer,
+  percentageHumidityRef,
+  windRPMRef,
+  ...props
+}) {
   const { nodes, materials } = useGLTF('./models/Lighthouse.glb');
   const [speed, setSpeed] = useState();
   const { resolvedTheme } = useTheme();
@@ -72,6 +79,7 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
           event.stopPropagation(), trigger('percentageHumidity')
         )}
         onPointerOut={(event) => trigger('')}
+        onClick={(event) => openDrawer(percentageHumidityRef)}
         geometry={nodes.WaterLevel.geometry}
         material={materials.LevelIndicator}
         position={[2, 5, 3]}
@@ -83,6 +91,7 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
         {...props}
         onPointerOver={(event) => (event.stopPropagation(), trigger('windRPM'))}
         onPointerOut={(event) => trigger('')}
+        onClick={(event) => openDrawer(windRPMRef)}
         position={[0, 13.693, 0]}
         scale={1.051}
       >

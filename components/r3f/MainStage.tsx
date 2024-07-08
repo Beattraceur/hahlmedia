@@ -8,6 +8,12 @@ import { TriggerType } from '@/lib/types';
 export default function MainStage({
   trigger,
   lastHourRainAmount,
+  openDrawer,
+  percentageHumidityRef,
+  windRPMRef,
+  rainAmountRef,
+  temperatureRef,
+  pressureRef,
 }: {
   trigger: TriggerType;
   lastHourRainAmount: number;
@@ -25,7 +31,16 @@ export default function MainStage({
         }}
       >
         <OrbitControls />
-        <Scene trigger={trigger} lastHourRainAmount={lastHourRainAmount} />
+        <Scene
+          trigger={trigger}
+          lastHourRainAmount={lastHourRainAmount}
+          openDrawer={openDrawer}
+          percentageHumidityRef={percentageHumidityRef}
+          windRPMRef={windRPMRef}
+          rainAmountRef={rainAmountRef}
+          temperatureRef={temperatureRef}
+          pressureRef={pressureRef}
+        />
       </Canvas>
     </div>
   );

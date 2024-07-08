@@ -14,6 +14,12 @@ import { TriggerType } from '@/lib/types';
 export default function Scene({
   trigger,
   lastHourRainAmount,
+  openDrawer,
+  percentageHumidityRef,
+  windRPMRef,
+  rainAmountRef,
+  temperatureRef,
+  pressureRef,
 }: {
   trigger: TriggerType;
   lastHourRainAmount: number;
@@ -48,11 +54,31 @@ export default function Scene({
         lastHourRainAmount={lastHourRainAmount}
       /> */}
       <Lightbox />
-      <Lighthouse windRPM={windRPM} trigger={trigger} />
-      <ThermoHouse temperature={temperature} trigger={trigger} />
-      <Barrels lastHourRainAmount={lastHourRainAmount} trigger={trigger} />
-
-      <Balloon pressure={pressure} trigger={trigger} />
+      <Lighthouse
+        windRPM={windRPM}
+        trigger={trigger}
+        openDrawer={openDrawer}
+        percentageHumidityRef={percentageHumidityRef}
+        windRPMRef={windRPMRef}
+      />
+      <ThermoHouse
+        temperature={temperature}
+        trigger={trigger}
+        openDrawer={openDrawer}
+        temperatureRef={temperatureRef}
+      />
+      <Barrels
+        lastHourRainAmount={lastHourRainAmount}
+        trigger={trigger}
+        openDrawer={openDrawer}
+        rainAmountRef={rainAmountRef}
+      />
+      <Balloon
+        pressure={pressure}
+        trigger={trigger}
+        openDrawer={openDrawer}
+        pressureRef={pressureRef}
+      />
       <Base />
       {/* <Stats /> */}
     </group>

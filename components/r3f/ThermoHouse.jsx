@@ -11,7 +11,10 @@ import {
   useGLTF,
 } from '@react-three/drei';
 
-export default function Model({ temperature, trigger }, props) {
+export default function Model(
+  { temperature, openDrawer, temperatureRef, trigger },
+  props
+) {
   const { nodes, materials } = useGLTF('./models/ThermoHouse.glb');
   // const temperature = 30;
   const planes = useMemo(
@@ -38,6 +41,7 @@ export default function Model({ temperature, trigger }, props) {
           event.stopPropagation(), trigger('temperature')
         )}
         onPointerOut={(event) => trigger('')}
+        onClick={(event) => openDrawer(temperatureRef)}
       >
         <mesh
           geometry={nodes.Sphere004.geometry}
