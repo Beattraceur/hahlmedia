@@ -30,7 +30,11 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
   });
   return (
     <group {...props} dispose={null} position={[0, -10.1, 0]}>
-      <group position={[0, 5.407, 0]} scale={0.292}>
+      <group
+        position={[0, 5.407, 0]}
+        scale={0.292}
+        onPointerOver={(event) => event.stopPropagation()}
+      >
         <mesh
           geometry={nodes.uploads_files_220346_Lindau_Lighthouse_1.geometry}
           material={materials.Default}
@@ -52,6 +56,7 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
         position={[2.322, 2.921, -0.999]}
         rotation={[0, 0.47, 0]}
         scale={[6.488, 2.488, 3.567]}
+        onPointerOver={(event) => event.stopPropagation()}
       >
         <mesh
           geometry={nodes.Cylinder001.geometry}
