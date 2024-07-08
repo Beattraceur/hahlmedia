@@ -1,4 +1,4 @@
-import { Backdrop, RoundedBox } from '@react-three/drei'; // Assuming you're not using Tetrahedron
+import { Backdrop, RoundedBox, Stats } from '@react-three/drei'; // Assuming you're not using Tetrahedron
 import Rotator from './Rotator';
 import WaterLevel from './WaterLevel';
 import { useTheme } from 'next-themes';
@@ -8,13 +8,14 @@ import Base from './Base';
 import Lighthouse from './Lighthouse';
 import Lightbox from './Lightbox';
 import Barrels from './Barrels';
-import Barometer from './Barometer';
+import ThermoHouse from './ThermoHouse';
 import Balloon from './Balloon';
 export default function Scene({ trigger, lastHourRainAmount }) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
   const soilMoisture = espData.at(-1)?.percentageHumidity;
   const pressure = espData.at(-1)?.pressure;
+  const temperature = espData.at(-1)?.temperature;
   const { resolvedTheme } = useTheme();
   const ambientLightIntnsity = resolvedTheme === 'dark' ? 0 : 0.8;
   const directLightIntnsity = resolvedTheme === 'dark' ? 1 : 1.2;
@@ -41,10 +42,12 @@ export default function Scene({ trigger, lastHourRainAmount }) {
       /> */}
       <Lightbox />
       <Lighthouse windRPM={windRPM} trigger={trigger} />
+      <ThermoHouse temperature={temperature} trigger={trigger} />
       <Barrels lastHourRainAmount={lastHourRainAmount} trigger={trigger} />
       {/* <Barometer pressure={pressure} trigger={trigger} /> */}
       <Balloon pressure={pressure} trigger={trigger} />
       <Base />
+      {/* <Stats /> */}
     </group>
   );
 }

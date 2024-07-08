@@ -10,6 +10,7 @@ export default function MainStage({ trigger, lastHourRainAmount }) {
   return (
     <div className='w-full h-screen'>
       <Canvas
+        gl={{ localClippingEnabled: true }}
         onCreated={({ camera, scene }) => {
           camera.position.set(20, 5, 20);
           // camera.add(light);

@@ -48,13 +48,20 @@ export default function Model({ windRPM = 0, trigger, ...props }) {
           material={materials.Dark}
         />
       </group>
-      <mesh
-        geometry={nodes.Cylinder.geometry}
-        material={materials.BrickWall}
+      <group
         position={[2.322, 2.921, -0.999]}
         rotation={[0, 0.47, 0]}
         scale={[6.488, 2.488, 3.567]}
-      />
+      >
+        <mesh
+          geometry={nodes.Cylinder001.geometry}
+          material={materials.StoneFloor}
+        />
+        <mesh
+          geometry={nodes.Cylinder001_1.geometry}
+          material={materials.BrickWall}
+        />
+      </group>
       <mesh
         onPointerOver={(event) => (
           event.stopPropagation(), trigger('percentageHumidity')

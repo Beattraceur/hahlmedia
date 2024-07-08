@@ -11,10 +11,11 @@ export default function WaterLevel({ soilMoisture = 50 }) {
     >
       <MeshTransmissionMaterial
         transmission={0.8}
-        distortion={1}
-        thickness={0.01}
+        distortion={0.5}
+        thickness={1}
         color={'#3D97A0'}
-        temporalDistortion={0.2}
+        temporalDistortion={0.5}
+        resolution={1080}
       />
     </RoundedBox>
   );
