@@ -19,7 +19,7 @@ export default function Rotator({ windRPM = 0, ...props }: WindProps) {
     }
   }, [windRPM]);
 
-  const ref = useRef<THREE.Mesh>(null);
+  const ref = useRef<THREE.Group>(null);
 
   useFrame((state, delta) => {
     if (speed !== 0 && ref.current) {
@@ -29,7 +29,7 @@ export default function Rotator({ windRPM = 0, ...props }: WindProps) {
   });
 
   return (
-    <group ref={ref} {...props} dispose={null}>
+    <group ref={ref} position={[0, 1, 0]} {...props} dispose={null}>
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 7.6, 40]}>
         <coneGeometry args={[8, 80, 64, 10, true]} />
         <FakeGlowMaterial
@@ -37,7 +37,6 @@ export default function Rotator({ windRPM = 0, ...props }: WindProps) {
           glowInternalRadius={1.5}
           glowColor={'#ffffff'}
           glowSharpness={10}
-          side={THREE.FrontSide}
           opacity={1}
           depthTest={true}
         />

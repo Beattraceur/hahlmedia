@@ -24,6 +24,12 @@ export default function MainStage({
 }: {
   trigger: TriggerType;
   lastHourRainAmount: number;
+  openDrawer: () => void;
+  percentageHumidityRef: React.MutableRefObject<number>;
+  windRPMRef: React.MutableRefObject<number>;
+  rainAmountRef: React.MutableRefObject<number>;
+  temperatureRef: React.MutableRefObject<number>;
+  pressureRef: React.MutableRefObject<number>;
 }) {
   const light = new DirectionalLight();
   light.position.set(2, 10, 6); // This position is relative to the camera's position
@@ -37,7 +43,11 @@ export default function MainStage({
           scene.add(camera);
         }}
       >
-        <OrbitControls />
+        <OrbitControls
+          maxDistance={30}
+          minDistance={12}
+          maxPolarAngle={Math.PI / 1.8}
+        />
         <Suspense fallback={<Loader />}>
           <Scene
             trigger={trigger}

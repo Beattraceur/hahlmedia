@@ -1,4 +1,3 @@
-import { Backdrop, RoundedBox, Stats } from '@react-three/drei'; // Assuming you're not using Tetrahedron
 import Rotator from './Rotator';
 import WaterLevel from './WaterLevel';
 import { useTheme } from 'next-themes';
@@ -6,7 +5,7 @@ import { useEspData } from '@/lib/espDataFetcher';
 import RainEffect from './RainEffect';
 import Base from './Base';
 import Lighthouse from './Lighthouse';
-import Lightbox from './Lightbox';
+
 import Barrels from './Barrels';
 import ThermoHouse from './ThermoHouse';
 import Balloon from './Balloon';
@@ -23,6 +22,12 @@ export default function Scene({
 }: {
   trigger: TriggerType;
   lastHourRainAmount: number;
+  openDrawer: () => void;
+  percentageHumidityRef: React.MutableRefObject<number>;
+  windRPMRef: React.MutableRefObject<number>;
+  rainAmountRef: React.MutableRefObject<number>;
+  temperatureRef: React.MutableRefObject<number>;
+  pressureRef: React.MutableRefObject<number>;
 }) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
@@ -45,9 +50,7 @@ export default function Scene({
       {lastHourRainAmount > 0 && (
         <RainEffect windRPM={windRPM} rainColor={rainColor} />
       )}
-      {resolvedTheme === 'dark' && (
-        <Rotator position={[0, 1, 0]} windRPM={windRPM} />
-      )}
+      {resolvedTheme === 'dark' && <Rotator windRPM={windRPM} />}
 
       <WaterLevel soilMoisture={soilMoisture} />
       {/* <Base
