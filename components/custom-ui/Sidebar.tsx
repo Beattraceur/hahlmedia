@@ -130,7 +130,7 @@ export default function Sidebar({ lang, navigation }: Props) {
               </Link>
             </div>
             {/* Impressum link in the future */}
-            <Link href='/impressum'>Impressum & Datenschutz</Link>
+            <Link href='/impressum'>Impressum / Datenschutz</Link>
             {/* Admin link to enter payload cms */}
             <Link href='/admin'>Payload-Admin</Link>
             {/* Copyright and year of current year */}
