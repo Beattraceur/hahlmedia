@@ -5,6 +5,8 @@ import Header from '@/components/header';
 
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/toaster';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 //default title and description
 export const metadata: Metadata = {
@@ -26,13 +28,15 @@ export default function RootLayout({
   return (
     //ThemeProvider for day and night mode
     <ThemeProvider attribute='class'>
-      <main className='flex items-start justify-between'>
-        {/* Header component for loading Sidebar */}
-        <Header lang={params.lang} />
-        <div className=' w-full h-full overflow-auto'>{children}</div>
-        {/* Toaster component for notifications */}
-        <Toaster />
-      </main>
+      <Suspense fallback={<Loading />}>
+        <main className='flex items-start justify-between'>
+          {/* Header component for loading Sidebar */}
+          <Header lang={params.lang} />
+          <div className=' w-full h-full overflow-auto'>{children}</div>
+          {/* Toaster component for notifications */}
+          <Toaster />
+        </main>
+      </Suspense>
     </ThemeProvider>
   );
 }

@@ -1,9 +1,16 @@
 'use client';
 import { Canvas, useFrame } from '@react-three/fiber';
 import Scene from './Scene';
-import { Backdrop, OrbitControls, Stage } from '@react-three/drei';
+import {
+  Backdrop,
+  Html,
+  OrbitControls,
+  Stage,
+  useProgress,
+} from '@react-three/drei';
 import { DirectionalLight } from 'three';
 import { TriggerType } from '@/lib/types';
+import { Suspense } from 'react';
 
 export default function MainStage({
   trigger,
@@ -31,17 +38,24 @@ export default function MainStage({
         }}
       >
         <OrbitControls />
-        <Scene
-          trigger={trigger}
-          lastHourRainAmount={lastHourRainAmount}
-          openDrawer={openDrawer}
-          percentageHumidityRef={percentageHumidityRef}
-          windRPMRef={windRPMRef}
-          rainAmountRef={rainAmountRef}
-          temperatureRef={temperatureRef}
-          pressureRef={pressureRef}
-        />
+        <Suspense fallback={<Loader />}>
+          <Scene
+            trigger={trigger}
+            lastHourRainAmount={lastHourRainAmount}
+            openDrawer={openDrawer}
+            percentageHumidityRef={percentageHumidityRef}
+            windRPMRef={windRPMRef}
+            rainAmountRef={rainAmountRef}
+            temperatureRef={temperatureRef}
+            pressureRef={pressureRef}
+          />
+        </Suspense>
       </Canvas>
     </div>
   );
+}
+
+function Loader() {
+  const { active, progress, errors, item, loaded, total } = useProgress();
+  return <Html center>{progress.toFixed(0)} % loaded</Html>;
 }
