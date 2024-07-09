@@ -47,6 +47,7 @@ export default function MainStage({
           maxDistance={30}
           minDistance={12}
           maxPolarAngle={Math.PI / 1.8}
+          enablePan={false}
         />
         <Suspense fallback={<Loader />}>
           <Scene

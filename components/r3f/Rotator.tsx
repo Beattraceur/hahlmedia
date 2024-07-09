@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import FakeGlowMaterial from './FakeGlowMaterial';
-import { Circle } from '@react-three/drei';
+import { Circle, Cone, Cylinder } from '@react-three/drei';
 
 interface WindProps {
   windRPM: number | undefined;
@@ -41,7 +41,12 @@ export default function Rotator({ windRPM = 0, ...props }: WindProps) {
           depthTest={true}
         />
       </mesh>
-      <Circle args={[0.2, 64]} position={[0, 7.6, 0.6]} />
+      <Circle args={[0.1, 64]} position={[0, 7.6, 0.6]} />
+      <Cone
+        args={[0.05, 0.05, 32]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        position={[0, 7.6, 0.2]}
+      />
     </group>
   );
 }
