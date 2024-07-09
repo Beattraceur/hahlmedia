@@ -2,12 +2,17 @@
 
 import { Locale } from '@/i18n.config';
 import DataChart from '@/components/custom-ui/DataChart';
-import { useRef, useState } from 'react';
+import { ComponentClass, FunctionComponent, useRef, useState } from 'react';
 import DioramaInfo from './custom-ui/DioramaInfo';
 import { PageText } from '@/lib/types';
 import { useEspData } from '@/lib/espDataFetcher';
 import MainStage from './r3f/MainStage';
-
+type ComponentType<P = {}, S = any> =
+  | ComponentClass<P, S>
+  | FunctionComponent<P>;
+interface DrawableComponent {
+  openDrawer: () => void;
+}
 export default function Interaction3D({
   lang,
   text,
@@ -31,7 +36,7 @@ export default function Interaction3D({
   const windRPMRef = useRef(null);
 
   // Function to open the specific drawer
-  const openDrawer = (chartRef) => {
+  const openDrawer = (chartRef: React.MutableRefObject<DrawableComponent>) => {
     if (chartRef.current) {
       chartRef.current.openDrawer();
     }

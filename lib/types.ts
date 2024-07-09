@@ -72,3 +72,18 @@ export type ChartType = {
 export type TriggerType = {
   trigger: Dispatch<SetStateAction<string>>;
 };
+
+export type DrawableComponent = {
+  openDrawer: () => void;
+};
+
+export type InheritedProps = {
+  trigger: Dispatch<SetStateAction<string>>;
+  lastHourRainAmount?: number;
+  openDrawer: (chartRef: React.MutableRefObject<DrawableComponent>) => void;
+  percentageHumidityRef?: React.MutableRefObject<null>;
+  windRPMRef?: React.MutableRefObject<null>;
+  rainAmountRef?: React.MutableRefObject<null>;
+  temperatureRef?: React.MutableRefObject<null>;
+  pressureRef?: React.MutableRefObject<null>;
+};

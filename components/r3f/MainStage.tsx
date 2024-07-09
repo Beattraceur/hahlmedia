@@ -9,8 +9,13 @@ import {
   useProgress,
 } from '@react-three/drei';
 import { DirectionalLight } from 'three';
-import { TriggerType } from '@/lib/types';
-import { Suspense } from 'react';
+import {
+  ChartType,
+  DrawableComponent,
+  InheritedProps,
+  TriggerType,
+} from '@/lib/types';
+import { Dispatch, SetStateAction, Suspense } from 'react';
 
 export default function MainStage({
   trigger,
@@ -21,16 +26,7 @@ export default function MainStage({
   rainAmountRef,
   temperatureRef,
   pressureRef,
-}: {
-  trigger: TriggerType;
-  lastHourRainAmount: number;
-  openDrawer: () => void;
-  percentageHumidityRef: React.MutableRefObject<number>;
-  windRPMRef: React.MutableRefObject<number>;
-  rainAmountRef: React.MutableRefObject<number>;
-  temperatureRef: React.MutableRefObject<number>;
-  pressureRef: React.MutableRefObject<number>;
-}) {
+}: InheritedProps) {
   const light = new DirectionalLight();
   light.position.set(2, 10, 6); // This position is relative to the camera's position
   return (

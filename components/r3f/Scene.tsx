@@ -9,26 +9,17 @@ import Lighthouse from './Lighthouse';
 import Barrels from './Barrels';
 import ThermoHouse from './ThermoHouse';
 import Balloon from './Balloon';
-import { TriggerType } from '@/lib/types';
+import { InheritedProps, TriggerType } from '@/lib/types';
 export default function Scene({
   trigger,
-  lastHourRainAmount,
+  lastHourRainAmount = 0,
   openDrawer,
   percentageHumidityRef,
   windRPMRef,
   rainAmountRef,
   temperatureRef,
   pressureRef,
-}: {
-  trigger: TriggerType;
-  lastHourRainAmount: number;
-  openDrawer: () => void;
-  percentageHumidityRef: React.MutableRefObject<number>;
-  windRPMRef: React.MutableRefObject<number>;
-  rainAmountRef: React.MutableRefObject<number>;
-  temperatureRef: React.MutableRefObject<number>;
-  pressureRef: React.MutableRefObject<number>;
-}) {
+}: InheritedProps) {
   const espData = useEspData();
   const windRPM = espData.at(-1)?.windRPM;
   const soilMoisture = espData.at(-1)?.percentageHumidity;
