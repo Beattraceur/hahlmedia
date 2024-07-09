@@ -36,7 +36,9 @@ export default function Interaction3D({
   const windRPMRef = useRef(null);
 
   // Function to open the specific drawer
-  const openDrawer = (chartRef: React.MutableRefObject<DrawableComponent>) => {
+  const openDrawer = (
+    chartRef: React.MutableRefObject<DrawableComponent | null>
+  ) => {
     if (chartRef.current) {
       chartRef.current.openDrawer();
     }
