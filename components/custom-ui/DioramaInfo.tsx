@@ -1,6 +1,6 @@
 'use client';
 import { Locale } from '@/i18n.config';
-import { Button } from '../ui/button';
+
 import {
   Dialog,
   DialogContent,
@@ -101,7 +101,7 @@ export default function DioramaInfo({
         setSuffix('rpm');
         break;
     }
-  }, [triggeredTopic]);
+  }, [triggeredTopic, lang]);
   return (
     <>
       <Dialog>
