@@ -1,5 +1,5 @@
-import { i18n } from "@/i18n.config";
-import Link from "next/link";
+import { i18n } from '@/i18n.config';
+import Link from 'next/link';
 
 type CustomLinkProps = {
   href: string;
@@ -15,7 +15,8 @@ export default function CustomLink({
   ...props
 }: CustomLinkProps) {
   const isDefaultLang = lang === i18n.defaultLocale;
-  const path = isDefaultLang ? href : `/${lang}${href}`;
+  // const path = isDefaultLang ? href : `/${lang}${href}`;
+  const path = `/${lang}${href}`;
   return (
     <Link href={path} {...props}>
       {children}

@@ -21,6 +21,12 @@ function getLocale(request: NextRequest): string | undefined {
 
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
+  // Trim everything in front of /models if the path includes /models
+  if (pathname.includes('/models')) {
+    const newPathname = pathname.substring(pathname.indexOf('/models'));
+    return NextResponse.rewrite(new URL(newPathname, request.url));
+  }
+
   if (pathname === '/') {
     //tracking analytics event
     console.log('TRACK!');
@@ -36,6 +42,7 @@ export function middleware(request: NextRequest) {
       console.error(error);
     }
   }
+
   const pathnameIsMissingLocale = i18n.locales.every(
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
@@ -43,14 +50,14 @@ export function middleware(request: NextRequest) {
   // Redirect if there is no locale
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
-    if (locale === i18n.defaultLocale) {
-      return NextResponse.rewrite(
-        new URL(
-          `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-          request.url
-        )
-      );
-    }
+    // if (locale === i18n.defaultLocale) {
+    //   return NextResponse.rewrite(
+    //     new URL(
+    //       `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
+    //       request.url
+    //     )
+    //   );
+    // }
     return NextResponse.redirect(
       new URL(
         `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,

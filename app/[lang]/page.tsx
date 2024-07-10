@@ -28,7 +28,7 @@ export default async function Home({
   })) as PagePicture;
   // text loads all text elements in both languages from the payload CMS
 
-  const text = (await PageTextLoader({ slug: 'diorama' })) as PageText;
+  const text = (await PageTextLoader({ slug: 'home' })) as PageText;
   return (
     <>
       {/* display hero picture when set in payload */}
@@ -40,14 +40,12 @@ export default async function Home({
         />
       )} */}
       {/* display page text when set in payload */}
-      {/* {text && (
-        <div className="p-24">
-          <h1 className="text-3xl font-bold ">{text[`${lang}_title`]}</h1>
+      {text && (
+        <div className='p-24'>
+          <h1 className='text-3xl font-bold '>{text[`${lang}_title`]}</h1>
           <p>{text[`${lang}_description`]}</p>
         </div>
-      )} */}
-
-      <Interaction3D lang={lang} text={text} />
+      )}
     </>
   );
 }
