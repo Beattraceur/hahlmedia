@@ -33,7 +33,7 @@ export default async function Home({
       )} */}
       {/* display page text when set in payload */}
       {text && (
-        <div className='w-screen h-screen flex justify-center'>
+        <div className='w-full h-screen flex justify-center'>
           <div className='p-24 flex flex-col gap-4 max-w-screen-xl '>
             <h1 className='text-3xl font-bold '>{text[`${lang}_title`]}</h1>
             <p>{text[`${lang}_description`]}</p>
