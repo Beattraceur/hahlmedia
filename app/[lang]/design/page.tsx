@@ -1,6 +1,6 @@
 import ThemedImage from '@/components/custom-ui/ThemedImage';
 import { Locale } from '@/i18n.config';
-import { PagePictureLoader, PageTextLoader } from '@/lib/payloadLoader';
+import { PageTextLoader } from '@/lib/payloadLoader';
 import { PagePicture, PageText } from '@/lib/types';
 import {
   HoverCard,
