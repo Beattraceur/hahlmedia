@@ -27,8 +27,16 @@ export default async function Home({
     param: 'hero',
   })) as PagePicture;
   // text loads all text elements in both languages from the payload CMS
-
+  const lightPictureArray = (await PagePictureLoader({
+    slug: 'home',
+    param: 'usage',
+  })) as PagePicture[];
+  const darkPictureArray = (await PagePictureLoader({
+    slug: 'home_dark',
+    param: 'usage',
+  })) as PagePicture[];
   const text = (await PageTextLoader({ slug: 'home' })) as PageText;
+
   return (
     <>
       {/* display hero picture when set in payload */}
@@ -36,14 +44,47 @@ export default async function Home({
         <ThemedImage
           heroPic={heroPic}
           heroPic_dark={heroPic_dark}
-          classes="w-full max-h-64 object-cover"
+          classes='w-full max-h-64 object-cover'
         />
       )} */}
       {/* display page text when set in payload */}
       {text && (
-        <div className='p-24'>
-          <h1 className='text-3xl font-bold '>{text[`${lang}_title`]}</h1>
-          <p>{text[`${lang}_description`]}</p>
+        <div className='w-screen h-screen flex justify-center'>
+          <div className='p-24 flex flex-col gap-4 max-w-screen-xl '>
+            <h1 className='text-3xl font-bold '>{text[`${lang}_title`]}</h1>
+            <p>{text[`${lang}_description`]}</p>
+            {text.topics && (
+              <div>
+                <h1 className='text-3xl font-bold '>
+                  {text.topics[0][`${lang}_title`]}
+                </h1>
+                {(lightPictureArray.length > 0 ||
+                  darkPictureArray.length > 0) && (
+                  <ThemedImage
+                    Pic={lightPictureArray[0]}
+                    Pic_dark={darkPictureArray[0]}
+                    classes=''
+                  />
+                )}
+                <p className='pt-4'>{text.topics[0][`${lang}_description`]}</p>
+              </div>
+            )}
+            {(lightPictureArray.length > 1 || darkPictureArray.length > 1) && (
+              <ThemedImage
+                Pic={lightPictureArray[1]}
+                Pic_dark={darkPictureArray[1]}
+                classes='max-w-screen-md self-center'
+              />
+            )}
+            {text &&
+              text.topics &&
+              text.topics[0].projects?.map((project) => (
+                <div key={project.id} className='pt-4'>
+                  <h3 className='text-xl '>{project[`${lang}_title`]}</h3>
+                  <p>{project[`${lang}_description`]}</p>
+                </div>
+              ))}
+          </div>
         </div>
       )}
     </>

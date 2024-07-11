@@ -1,38 +1,57 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { PagePicture } from "@/lib/types";
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useTheme } from 'next-themes';
+import { PagePicture } from '@/lib/types';
 
-// Component that desides which hero picture should be displayed based on the current theme
 export default function ThemedImage({
-  heroPic,
-  heroPic_dark,
+  Pic,
+  Pic_dark,
   classes,
 }: {
-  heroPic: PagePicture;
-  heroPic_dark: PagePicture;
+  Pic: PagePicture;
+  Pic_dark: PagePicture;
   classes?: string;
 }) {
   const { resolvedTheme } = useTheme();
-  if (resolvedTheme == "dark" && heroPic_dark) {
+  const [theme, setTheme] = useState('loading');
+
+  useEffect(() => {
+    if (resolvedTheme) {
+      setTheme(resolvedTheme);
+    }
+  }, [resolvedTheme]);
+
+  if (theme === 'loading')
     return (
       <Image
-        src={heroPic_dark.url}
-        alt={heroPic_dark.alt}
-        width={heroPic_dark.width}
-        height={heroPic_dark.height}
+        src={''}
+        alt={''}
+        width={Pic_dark.width}
+        height={Pic_dark.height}
         className={classes}
       />
     );
-  } else
+  else if (theme === 'dark' && Pic_dark) {
     return (
       <Image
-        src={heroPic.url}
-        alt={heroPic.alt}
-        width={heroPic.width}
-        height={heroPic.height}
+        src={Pic_dark.url}
+        alt={Pic_dark.alt}
+        width={Pic_dark.width}
+        height={Pic_dark.height}
         className={classes}
       />
     );
+  } else {
+    return (
+      <Image
+        src={Pic.url}
+        alt={Pic.alt}
+        width={Pic.width}
+        height={Pic.height}
+        className={classes}
+      />
+    );
+  }
 }
