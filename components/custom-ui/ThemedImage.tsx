@@ -6,12 +6,16 @@ import { useTheme } from 'next-themes';
 import { PagePicture } from '@/lib/types';
 
 export default function ThemedImage({
-  Pic,
-  Pic_dark,
+  picName,
+  width,
+  height,
+  suffix = '.webp',
   classes,
 }: {
-  Pic: PagePicture;
-  Pic_dark: PagePicture;
+  picName: string;
+  width: number;
+  height: number;
+  suffix?: string;
   classes?: string;
 }) {
   const { resolvedTheme } = useTheme();
@@ -28,28 +32,28 @@ export default function ThemedImage({
       <Image
         src={''}
         alt={''}
-        width={Pic_dark.width}
-        height={Pic_dark.height}
+        width={width}
+        height={height}
         className={classes}
       />
     );
-  else if (theme === 'dark' && Pic_dark) {
+  else if (theme === 'dark') {
     return (
       <Image
-        src={Pic_dark.url}
-        alt={Pic_dark.alt}
-        width={Pic_dark.width}
-        height={Pic_dark.height}
+        src={`/pictures/dark_${picName}${suffix}`}
+        alt={picName}
+        width={width}
+        height={height}
         className={classes}
       />
     );
   } else {
     return (
       <Image
-        src={Pic.url}
-        alt={Pic.alt}
-        width={Pic.width}
-        height={Pic.height}
+        src={`/pictures/light_${picName}${suffix}`}
+        alt={picName}
+        width={width}
+        height={height}
         className={classes}
       />
     );

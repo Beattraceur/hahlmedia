@@ -15,6 +15,7 @@ import { PageText } from '@/lib/types';
 import { useEspData } from '@/lib/espDataFetcher';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import ThemedImage from './ThemedImage';
 
 type EspData = {
   _id: string;
@@ -114,21 +115,11 @@ export default function DioramaInfo({
             {text && (
               <DialogDescription>
                 {text[`${lang}_description`]}
-                {resolvedTheme === 'dark' ? (
-                  <Image
-                    src={'/uploads/IoT-Pipeline-Dark.webp'}
-                    alt='IoT-Pipeline'
-                    width={1280}
-                    height={400}
-                  />
-                ) : (
-                  <Image
-                    src={'/uploads/IoT-Pipeline-Light.webp'}
-                    alt='IoT-Pipeline'
-                    width={1280}
-                    height={400}
-                  />
-                )}
+                <ThemedImage
+                  picName={'IoT-Pipeline'}
+                  width={1280}
+                  height={400}
+                />
               </DialogDescription>
             )}
           </DialogHeader>
