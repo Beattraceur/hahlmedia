@@ -18,11 +18,11 @@ export default async function Home({
 }) {
   // lang can be "en" or "de" depending on the URL
   // heroPic and heroPic_dark contains the hero image information loaded from the payload CMS. Depending on the current theme a dark and light picture will be displayed
-  const heroPic = (await PagePictureLoader({
+  const Pic = (await PagePictureLoader({
     slug: 'home',
     param: 'hero',
   })) as PagePicture;
-  const heroPic_dark = (await PagePictureLoader({
+  const Pic_dark = (await PagePictureLoader({
     slug: 'home_dark',
     param: 'hero',
   })) as PagePicture;
@@ -40,10 +40,10 @@ export default async function Home({
   return (
     <>
       {/* display hero picture when set in payload */}
-      {/* {heroPic && (
+      {/* {Pic && (
         <ThemedImage
-          heroPic={heroPic}
-          heroPic_dark={heroPic_dark}
+          Pic={Pic}
+          Pic_dark={Pic_dark}
           classes='w-full max-h-64 object-cover'
         />
       )} */}
