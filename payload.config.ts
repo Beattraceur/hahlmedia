@@ -1,19 +1,19 @@
-import { postgresAdapter } from "@payloadcms/db-postgres";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { nodemailerAdapter } from '@payloadcms/email-nodemailer';
 
 // import { payloadCloud } from '@payloadcms/plugin-cloud'
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
-import path from "path";
-import { buildConfig } from "payload/config";
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import path from 'path';
+import { buildConfig } from 'payload/config';
 // import sharp from 'sharp'
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
 
-import { Users } from "./collections/Users";
+import { Users } from './collections/Users';
 
-import { Dictionaries } from "./collections/Dictionaries";
-import { Media } from "./collections/Media";
-import { Pages } from "./collections/Pages";
-import Dashboard from "./components/custom-ui/Dashboard";
+import { Dictionaries } from './collections/Dictionaries';
+import { Media } from './collections/Media';
+import { Pages } from './collections/Pages';
+import Dashboard from './components/custom-ui/Dashboard';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -25,21 +25,21 @@ export default buildConfig({
     },
     user: Users.slug,
   },
-  collections: [Users, Dictionaries, Pages, Media],
+  collections: [Users, Dictionaries, Pages],
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
-    outputFile: path.resolve(dirname, "payload-types.ts"),
+    outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || "",
+      connectionString: process.env.DATABASE_URI || '',
     },
   }),
   email: nodemailerAdapter({
-    defaultFromAddress: "nodemailer@hahl.media",
-    defaultFromName: "Payload",
+    defaultFromAddress: 'nodemailer@hahl.media',
+    defaultFromName: 'Payload',
     // Nodemailer transportOptions
     transportOptions: {
       host: process.env.SMTP_HOST,
