@@ -13,25 +13,10 @@ export default async function Concept({
 }: {
   params: { lang: Locale };
 }) {
-  const Pic = (await PagePictureLoader({
-    slug: 'concept',
-    param: 'hero',
-  })) as PagePicture;
-  const Pic_dark = (await PagePictureLoader({
-    slug: 'concept_dark',
-    param: 'hero',
-  })) as PagePicture;
   const text = (await PageTextLoader({ slug: 'concept' })) as PageText;
 
   return (
     <>
-      {Pic && (
-        <ThemedImage
-          Pic={Pic}
-          Pic_dark={Pic_dark}
-          classes='w-full max-h-64 object-cover'
-        />
-      )}
       {text && (
         <div className='p-24 '>
           <h1 className='text-3xl font-bold '>{text[`${lang}_title`]}</h1>

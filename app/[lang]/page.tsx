@@ -18,23 +18,7 @@ export default async function Home({
 }) {
   // lang can be "en" or "de" depending on the URL
   // heroPic and heroPic_dark contains the hero image information loaded from the payload CMS. Depending on the current theme a dark and light picture will be displayed
-  const Pic = (await PagePictureLoader({
-    slug: 'home',
-    param: 'hero',
-  })) as PagePicture;
-  const Pic_dark = (await PagePictureLoader({
-    slug: 'home_dark',
-    param: 'hero',
-  })) as PagePicture;
-  // text loads all text elements in both languages from the payload CMS
-  const lightPictureArray = (await PagePictureLoader({
-    slug: 'home',
-    param: 'usage',
-  })) as PagePicture[];
-  const darkPictureArray = (await PagePictureLoader({
-    slug: 'home_dark',
-    param: 'usage',
-  })) as PagePicture[];
+
   const text = (await PageTextLoader({ slug: 'home' })) as PageText;
 
   return (
@@ -58,24 +42,11 @@ export default async function Home({
                 <h1 className='text-3xl font-bold '>
                   {text.topics[0][`${lang}_title`]}
                 </h1>
-                {(lightPictureArray.length > 0 ||
-                  darkPictureArray.length > 0) && (
-                  <ThemedImage
-                    Pic={lightPictureArray[0]}
-                    Pic_dark={darkPictureArray[0]}
-                    classes=''
-                  />
-                )}
+
                 <p className='pt-4'>{text.topics[0][`${lang}_description`]}</p>
               </div>
             )}
-            {(lightPictureArray.length > 1 || darkPictureArray.length > 1) && (
-              <ThemedImage
-                Pic={lightPictureArray[1]}
-                Pic_dark={darkPictureArray[1]}
-                classes='max-w-screen-md self-center'
-              />
-            )}
+
             {text &&
               text.topics &&
               text.topics[0].projects?.map((project) => (
