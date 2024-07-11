@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 import { Users } from './collections/Users';
 
 import { Dictionaries } from './collections/Dictionaries';
-import { Media } from './collections/Media';
+// import { Media } from './collections/Media';
 import { Pages } from './collections/Pages';
 import Dashboard from './components/custom-ui/Dashboard';
 
