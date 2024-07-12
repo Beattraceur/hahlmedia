@@ -1,3 +1,4 @@
+// app/api/espData/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { MongoClient } from 'mongodb';
 import clientPromise from '../../../lib/mongodb';
@@ -13,6 +14,8 @@ type EspData = {
   timestamp: string;
   [key: string]: any;
 };
+
+export const revalidate = 0;
 
 const TIMEZONE = 'Europe/Berlin';
 
@@ -35,28 +38,12 @@ export async function GET(req: NextRequest) {
       })
       .toArray();
 
-    const response = NextResponse.json(espData);
-    response.headers.set(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
-    );
-    response.headers.set('Pragma', 'no-cache');
-    response.headers.set('Expires', '0');
-
-    return response;
+    return NextResponse.json(espData);
   } catch (e) {
     console.error(e);
-    const response = NextResponse.json(
+    return NextResponse.json(
       { error: 'Unable to fetch ESP data' },
       { status: 500 }
     );
-    response.headers.set(
-      'Cache-Control',
-      'no-store, no-cache, must-revalidate, proxy-revalidate'
-    );
-    response.headers.set('Pragma', 'no-cache');
-    response.headers.set('Expires', '0');
-
-    return response;
   }
 }
