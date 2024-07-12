@@ -86,6 +86,32 @@ export default function Sidebar({ lang, navigation }: Props) {
                   >
                     {navigation[key as keyof typeof navigation]}
                   </CustomLink>
+                ) : key === 'type-trainer' ? (
+                  <Link
+                    key={key}
+                    href={'https://type-trainer.hahl.media/'}
+                    lang={lang}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    className={`relative ${
+                      hovered ? 'underline-animation' : ''
+                    } text-xl py-2`}
+                  >
+                    {navigation[key as keyof typeof navigation]}
+                  </Link>
+                ) : key === 'boat3dconfig' ? (
+                  <Link
+                    key={key}
+                    href={'https://boat3d.hahl.media/configurator'}
+                    lang={lang}
+                    onMouseEnter={() => setHovered(true)}
+                    onMouseLeave={() => setHovered(false)}
+                    className={`relative ${
+                      hovered ? 'underline-animation' : ''
+                    } text-xl py-2`}
+                  >
+                    {navigation[key as keyof typeof navigation]}
+                  </Link>
                 ) : (
                   <CustomLink
                     key={key}
