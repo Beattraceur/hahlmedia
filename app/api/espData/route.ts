@@ -1,8 +1,7 @@
-// app/api/espData/route.ts
-import { NextRequest, NextResponse } from "next/server";
-import { MongoClient } from "mongodb";
-import clientPromise from "../../../lib/mongodb";
-import { toDate } from "date-fns-tz";
+import { NextRequest, NextResponse } from 'next/server';
+import { MongoClient } from 'mongodb';
+import clientPromise from '../../../lib/mongodb';
+import { toDate } from 'date-fns-tz';
 
 type EspData = {
   _id: string;
@@ -15,13 +14,13 @@ type EspData = {
   [key: string]: any;
 };
 
-const TIMEZONE = "Europe/Berlin";
+const TIMEZONE = 'Europe/Berlin';
 
 export async function GET(req: NextRequest) {
   try {
     const client: MongoClient = await clientPromise;
-    const db = client.db("smartGardenDB");
-    const collection = db.collection<EspData>("espData");
+    const db = client.db('smartGardenDB');
+    const collection = db.collection<EspData>('espData');
 
     const now = new Date();
     const nowInGermanTime = toDate(now, { timeZone: TIMEZONE });
@@ -36,12 +35,28 @@ export async function GET(req: NextRequest) {
       })
       .toArray();
 
-    return NextResponse.json(espData);
+    const response = NextResponse.json(espData);
+    response.headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate'
+    );
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+
+    return response;
   } catch (e) {
     console.error(e);
-    return NextResponse.json(
-      { error: "Unable to fetch ESP data" },
+    const response = NextResponse.json(
+      { error: 'Unable to fetch ESP data' },
       { status: 500 }
     );
+    response.headers.set(
+      'Cache-Control',
+      'no-store, no-cache, must-revalidate, proxy-revalidate'
+    );
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('Expires', '0');
+
+    return response;
   }
 }
