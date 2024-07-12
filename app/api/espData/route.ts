@@ -15,7 +15,7 @@ type EspData = {
   [key: string]: any;
 };
 
-export const revalidate = 0;
+export const revalidate = 600;
 
 const TIMEZONE = 'Europe/Berlin';
 
