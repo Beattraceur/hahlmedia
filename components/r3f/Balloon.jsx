@@ -9,12 +9,12 @@ export default function Model(
   const { nodes, materials } = useGLTF('./models/Balloon.glb');
 
   const pressureLevel = pressure - 961;
-  // const pressureLevel = 9;
+  // const pressureLevel = 14;
   // Define clipping plane aligned with the z-axis
   const planes = useMemo(
     () => [
       // new THREE.Plane(new THREE.Vector3(0, 1, 0), 2.9), // 9
-      new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.2 * pressureLevel + 2.9), // 5
+      new THREE.Plane(new THREE.Vector3(0, 1, 0), 0.15 * pressureLevel + 2.9), // 5
       //new THREE.Plane(new THREE.Vector3(0, 1, 0), 4.7), // 0
     ],
     [pressureLevel]
@@ -92,7 +92,7 @@ export default function Model(
         <mesh
           geometry={nodes.Weight.geometry}
           material={materials.Silver}
-          position={[-6.879, 5.421 + 1.8 - pressureLevel / 5, 3.861]}
+          position={[-6.879, 5.421 + 1.8 - pressureLevel / 6.5, 3.861]}
         />
         <mesh
           geometry={nodes.BalloonBase.geometry}
